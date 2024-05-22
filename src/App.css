@@ -1,0 +1,45 @@
+.game {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 300px;
+}
+
+.game-board {
+  margin-right: 20px;
+}
+
+.board-row {
+  display: flex;
+}
+
+.square {
+  color: #1a1616;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: 2px solid #423c3c;
+  font-size: 34px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+
+.square:focus {
+  background: #f0f407;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+button {
+  background-color: rgb(0, 123, 255);
+  color: #fff;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+}
+.win {
+  color: red;
+}
