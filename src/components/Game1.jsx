@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Board from './Board';
+//import Board from './Board';
 
 const Game = () => {
     const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
@@ -17,22 +17,10 @@ const Game = () => {
         if (winner || squares[i]) {
             return;
         }
-
-        squares[i] = 'X';
-        const updatedHistory = newHistory.concat([{ squares }]);
-        setHistory(updatedHistory);
+        squares[i] = xIsNext ? 'X' : 'O';
+        setHistory(newHistory.concat([{ squares }]));
         setStepNumber(newHistory.length);
-        setXIsNext(false);
-
-        if (!calculateWinner(squares)) {
-            const aiMove = getAIMove(squares);
-            if (aiMove !== undefined) {
-                squares[aiMove] = 'O';
-                setHistory(updatedHistory.concat([{ squares }]));
-                setStepNumber(newHistory.length + 1);
-                setXIsNext(true);
-            }
-        }
+        setXIsNext(!xIsNext);
     };
 
     const jumpTo = (step) => {
@@ -54,12 +42,10 @@ const Game = () => {
     return (
         <div className="game">
             <div className="game-board">
-                <Board squares={current.squares} onClick={handleClick} winner={winner} />
+                <Board squares={current.squares} onClick={handleClick} />
             </div>
             <div className="game-info">
-                <h1 className="win">
-                    <div>{winner ? 'Winner: ' + winner : 'Next player: ' + (xIsNext ? 'X' : 'O')}</div>
-                </h1>
+               <h1 class="win"> <div>{winner ? 'Winner: ' + winner : 'Next player: ' + (xIsNext ? 'X' : 'O')}</div></h1>
                 <ol>{renderMoves()}</ol>
             </div>
         </div>
@@ -86,12 +72,4 @@ const calculateWinner = (squares) => {
     return null;
 };
 
-const getAIMove = (squares) => {
-    const availableMoves = squares
-        .map((square, index) => (square === null ? index : null))
-        .filter((index) => index !== null);
-    const randomIndex = Math.floor(Math.random() * availableMoves.length);
-    return availableMoves[randomIndex];
-};
-
-export default Game;
+//export default Game;

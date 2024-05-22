@@ -1,15 +1,9 @@
-import React from 'react';
-import Square from './Square';
+//import React from 'react';
+//import Square from './Square';
 
-const Board = ({ squares, onClick, winner }) => {
+const Board = ({ squares, onClick }) => {
     const renderSquare = (i) => {
-        return (
-            <Square
-                value={squares[i]}
-                onClick={() => onClick(i)}
-                isDisabled={squares[i] !== null || winner !== null}
-            />
-        );
+        return <Square value={squares[i]} onClick={() => onClick(i)} />;
     };
 
     return (
@@ -33,4 +27,4 @@ const Board = ({ squares, onClick, winner }) => {
     );
 };
 
-export default Board;
+//export default Board;
